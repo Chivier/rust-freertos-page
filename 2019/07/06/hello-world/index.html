@@ -4,19 +4,23 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Hello World | Rust-FreeRTOS</title>
+  <title>结题报告 | Rust-FreeRTOS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="Rust-FreeRTOS结题报告我们的项目是利用新兴的Rust语言改写FreeRTOS操作系统。 改写不是抄写。在项目开展的过程中，我们按照FreeRTOS的程序逻辑，针对Rust语言的特点做出了很多富有创造力的设计，我们将在以下部分进行介绍。 最终，我们成功实现了开题时提出的目标，完成了对FreeRTOS中所有的内核模块——移植（port）模块、链表（list）模块、任务调度（task）模块和">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
+<meta property="og:title" content="结题报告">
 <meta property="og:url" content="http://yoursite.com/2019/07/06/hello-world/index.html">
 <meta property="og:site_name" content="Rust-FreeRTOS">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Rust-FreeRTOS结题报告我们的项目是利用新兴的Rust语言改写FreeRTOS操作系统。 改写不是抄写。在项目开展的过程中，我们按照FreeRTOS的程序逻辑，针对Rust语言的特点做出了很多富有创造力的设计，我们将在以下部分进行介绍。 最终，我们成功实现了开题时提出的目标，完成了对FreeRTOS中所有的内核模块——移植（port）模块、链表（list）模块、任务调度（task）模块和">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-06T08:09:17.387Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/06/hello-world/concluding.assets/ports.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/06/hello-world/concluding.assets/1562379639791.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/06/hello-world/concluding.assets/1562381307690.png">
+<meta property="og:updated_time" content="2019-07-06T12:48:47.855Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="结题报告">
+<meta name="twitter:description" content="Rust-FreeRTOS结题报告我们的项目是利用新兴的Rust语言改写FreeRTOS操作系统。 改写不是抄写。在项目开展的过程中，我们按照FreeRTOS的程序逻辑，针对Rust语言的特点做出了很多富有创造力的设计，我们将在以下部分进行介绍。 最终，我们成功实现了开题时提出的目标，完成了对FreeRTOS中所有的内核模块——移植（port）模块、链表（list）模块、任务调度（task）模块和">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/06/hello-world/concluding.assets/ports.png">
   
     <link rel="alternative" href="https://github.com/Chivier" title="Rust-FreeRTOS" type="application/atom+xml">
   
@@ -71,7 +75,7 @@
       <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/06/hello-world/" class="article-date">
-  <time datetime="2019-07-06T11:46:52.339Z" itemprop="datePublished">2019-07-06</time>
+  <time datetime="2019-07-06T12:48:47.907Z" itemprop="datePublished">2019-07-06</time>
 </a>
     
   </div>
@@ -82,7 +86,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      结题报告
     </h1>
   
 
@@ -92,21 +96,241 @@
       
       <!-- Table of Contents -->
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="Rust-FreeRTOS结题报告"><a href="#Rust-FreeRTOS结题报告" class="headerlink" title="Rust-FreeRTOS结题报告"></a>Rust-FreeRTOS结题报告</h1><p>我们的项目是利用新兴的Rust语言改写FreeRTOS操作系统。</p>
+<p>改写不是抄写。在项目开展的过程中，我们按照FreeRTOS的程序逻辑，针对Rust语言的特点做出了很多富有创造力的设计，我们将在以下部分进行介绍。</p>
+<p>最终，我们成功实现了开题时提出的目标，完成了对FreeRTOS中所有的内核模块——<strong>移植（<code>port</code>）</strong>模块、<strong>链表</strong>（<code>list</code>）模块、<strong>任务调度</strong>（<code>task</code>）模块和<strong>队列与信号量</strong>（<code>queue</code>）模块——的改写；为了更好地发挥多人协作的作用，我们将以上模块进一步细分，形成了十余个轻量的子模块；截至我们开始撰写结题报告时，我们的总代码量（不包括底层的C语言代码）已经达到了<strong>6000行以上</strong>，git仓库的commits数量<strong>250多次</strong>，小组的每个成员都贡献了大量的代码；此外，我们希望这个项目更加专业，并且能够真正被他人使用，所以我们提供了详细的<a href>文档</a>和各个功能的<a href="https://github.com/OSH-2019/x-rust-freertos/tree/master/rust_freertos/examples" target="_blank" rel="noopener">示例代码</a>。</p>
+<p>在本报告中，我们首先将对Rust-FreeRTOS项目进行简要介绍，然后重点介绍我们的项目设计，最终介绍我们的测试结果。</p>
+<p>我们的小组成员：<strong>樊金昊 左顺 宁雨亭 黄业琦 张俸铭 雷思琦</strong></p>
+<p>[TOC]</p>
+<h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h2><ul>
+<li>Rust语言能够提供极高的代码安全性，能够在编译阶段就规避悬垂引用等危险行为，同时在保证数据正确性的情况下实现高效的无锁并发。    </li>
+<li>RTOS对程序的响应速度要求、安全性要求很高（如车载电脑，容错率低），因此从代码本身完整性和数据竞争上的安全性优化是比较理想的方式。</li>
+<li>FreeRTOS原操作系统使用C语言编写，而Rust中有Option、Trait、macro等机制，对应能够实现C语言中的指针和数据结构，并在程序编译阶段有更好的安全性表现。因此用Rust实现FreeRTOS是可行且适宜的方案。</li>
+<li>利用Rust进行RTOS的开发，能够在提高性能和安全性的同时不添加额外的资源开销、保持轻量化。</li>
+</ul>
+<h2 id="项目设计"><a href="#项目设计" class="headerlink" title="项目设计"></a>项目设计</h2><h3 id="总体设计概览"><a href="#总体设计概览" class="headerlink" title="总体设计概览"></a>总体设计概览</h3><h4 id="细致的模块化设计"><a href="#细致的模块化设计" class="headerlink" title="细致的模块化设计"></a>细致的模块化设计</h4><p>原本的FreeRTOS实现中，task模块仅位于<code>tasks.c</code>中，queue模块也全部在<code>queue.c</code>中实现，这样尽管使代码更加紧凑，但却使代码的可读性大大下降。同时，这也不利于我们小组中多人合作编写代码。</p>
+<p>为了使项目结构更加清晰，同时达到每人独立编写一个模块的效果，我们根据功能，对task和queue模块进行了进一步的模块化设计，<code>task</code>被分为<code>kernel</code>、<code>task_api</code>、<code>task_control</code>、<code>task_global</code>、<code>task_queue</code>和<code>task_timemanager</code>这六个模块，<code>queue</code>也被分为<code>queue</code>、<code>queue_api</code>、<code>semaphore</code>这三个模块。</p>
+<h4 id="基于Cargo-feature的内核裁剪功能"><a href="#基于Cargo-feature的内核裁剪功能" class="headerlink" title="基于Cargo feature的内核裁剪功能"></a>基于Cargo feature的内核裁剪功能</h4><p>FreeRTOS中提供了二十余个用于裁剪内核的宏，例如<code>IncludeTaskDelete</code>等，我们[利用Cargo的feature功能]，成功实现了FreeRTOS中所有的条件编译，具体技术细节在我们之前写过的<a href="https://github.com/OSH-2019/x-rust-freertos/tree/task/cfg" target="_blank" rel="noopener">这篇文章</a>中，在此不再赘述。条件编译的配置在<a href="https://github.com/OSH-2019/x-rust-freertos/blob/880890850098e52a90c335f8e3eb67dfbf38645b/rust_freertos/Cargo.toml#L17" target="_blank" rel="noopener">Cargo.toml</a>中。</p>
+<h4 id="全局变量的处理"><a href="#全局变量的处理" class="headerlink" title="全局变量的处理"></a>全局变量的处理</h4><p>FreeRTOS中，处于不同状态的任务队列、内核运行状态等数据都是以全局变量的形式存储的，但是Rust不鼓励使用全局变量，因为它可能造成数据竞争。因为Rust不支持结构体作为全局变量，所以我们使用了<a href="https://docs.rs/lazy_static" target="_blank" rel="noopener">lazy_static</a>包来封装任务链表。此外，我们使用全局mutable变量来存储系统状态，并创建<code>getter</code>和<code>setter</code>，用<code>unsafe</code>统一对其进行访问，例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">static</span> <span class="keyword">mut</span> TICK_COUNT: TickType = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[macro_export]</span></span><br><span class="line"><span class="built_in">macro_rules!</span> get_tick_count &#123;</span><br><span class="line">    () =&gt; &#123;</span><br><span class="line">        <span class="keyword">unsafe</span> &#123; crate::task_global::TICK_COUNT &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[macro_export]</span></span><br><span class="line"><span class="built_in">macro_rules!</span> set_tick_count &#123;</span><br><span class="line">    ($next_tick_count: expr) =&gt; &#123;</span><br><span class="line">        <span class="keyword">unsafe</span> &#123;</span><br><span class="line">            trace!(<span class="string">"TICK_COUNT was set to &#123;&#125;"</span>, $next_tick_count);</span><br><span class="line">            crate::task_global::TICK_COUNT = $next_tick_count;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为操作系统状态变量只会被内核函数访问，所以此处不会发生数据竞争，可以放心使用<code>unsafe</code>。</p>
+<h4 id="完善的日志"><a href="#完善的日志" class="headerlink" title="完善的日志"></a>完善的日志</h4><p>在上一部分中，我们已经展示了<code>trace!</code>函数的使用，在我们的实现中，我们广泛地使用了日志函数，以下是我们某次测试中的一段日志：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">13:15:11 [TRACE] rust_freertos::task_control: [src/task_control.rs:127] Initialising Task: main, stack size: 512 bytes</span><br><span class="line">13:15:11 [TRACE] rust_freertos::ffi: [src/ffi.rs:40] vTaskSuspendAll() called from ffi!</span><br><span class="line">13:15:11 [TRACE] rust_freertos::kernel: [src/kernel.rs:400] SCHEDULER_SUSPENDED was set to 1</span><br><span class="line">13:15:11 [TRACE] rust_freertos::ffi: [src/ffi.rs:46] xTaskResumeAll() called from ffi!</span><br><span class="line">13:15:11 [TRACE] rust_freertos::kernel: [src/kernel.rs:471] SCHEDULER_SUSPENDED was set to 0</span><br><span class="line">13:15:11 [INFO] task_resume_all() returned false</span><br><span class="line">13:15:11 [TRACE] rust_freertos::task_control: [src/task_control.rs:141] stack_pos for task main is 140500632868624</span><br><span class="line">13:15:11 [TRACE] rust_freertos::task_control: [src/task_control.rs:152] Function ptr of main is at 7FC8DA5016F0</span><br><span class="line">13:15:11 [TRACE] rust_freertos::ffi: [src/ffi.rs:40] vTaskSuspendAll() called from ffi!</span><br><span class="line">13:15:11 [TRACE] rust_freertos::kernel: [src/kernel.rs:400] SCHEDULER_SUSPENDED was set to 1</span><br><span class="line">13:15:11 [TRACE] rust_freertos::ffi: [src/ffi.rs:46] xTaskResumeAll() called from ffi!</span><br><span class="line">13:15:11 [TRACE] rust_freertos::kernel: [src/kernel.rs:471] SCHEDULER_SUSPENDED was set to 0</span><br></pre></td></tr></table></figure>
+<p>这段日志显示了任务创建的过程。可见，日志让我们的代码执行过程变得可视化。在我们的调试过程中，日志的作用至关重要。</p>
+<h3 id="硬件接口——Port模块"><a href="#硬件接口——Port模块" class="headerlink" title="硬件接口——Port模块"></a>硬件接口——Port模块</h3><p>Port模块是与体系结构相关的，每一个体系结构都有自己的一套port实现，FreeRTOS 8中就提供了面向以下体系结构和编译器的port模块：</p>
+<p><img src="concluding.assets/ports.png" alt="ports"></p>
+<p>这意味着，我们是不可能把每一个port都用Rust改写一遍的。但是，所有的port函数都提供了统一的API接口，所以我们决定利用Rust封装这些API接口。有了这些封装，<strong>我们的代码理论上可以在任何FreeRTOS和LLVM支持的平台上运行</strong>。</p>
+<p>因为不同体系结构和编译器上Rust和C语言的接口是不同的，所以以上封装是<strong>由程序自动进行的</strong>，我们使用了<a href="https://github.com/rust-lang/rust-bindgen" target="_blank" rel="noopener">Bindgen</a>工具来生成C代码对应的Rust函数，并利用<a href="https://docs.rs/cc" target="_blank" rel="noopener">CC</a>库来编译C代码，并和Rust程序链接起来，以上过程均在<a href="https://github.com/OSH-2019/x-rust-freertos/blob/master/rust_freertos/build.rs" target="_blank" rel="noopener">build.rs</a>中完成。</p>
+<p>因为Bindgen生成的Rust函数是<code>unsafe</code>函数，所以我们又在<a href="https://github.com/OSH-2019/x-rust-freertos/blob/master/rust_freertos/src/port.rs" target="_blank" rel="noopener">port.rs</a>中对这些函数进行了一层safe封装，这是Rust中的通行做法；此外，对于C语言中调用的Rust函数，我们也利用Rust的<a href="https://github.com/OSH-2019/x-rust-freertos/blob/master/rust_freertos/src/ffi.rs" target="_blank" rel="noopener"><strong>FFI</strong></a>为他们生成了对应的C函数。这样，<strong>port层的C代码和Rust代码就可以互相调用了</strong>。</p>
+<h3 id="基本数据结构——链表"><a href="#基本数据结构——链表" class="headerlink" title="基本数据结构——链表"></a>基本数据结构——链表</h3><p>在 FreeRTOS 中，List 的主要作用是辅助任务调度。任务调度是该系统中最重要的一部分，而其任务调度大量使用了链表（list.c 实现），调度器使用链表跟踪不同状态下的任务（就绪、挂起、延时的任务，都会被挂载到各自的链表中）。接下来就讲讲 List 的实现方法。</p>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><p>在 C 语言版本中，List 实际上是一个双向链表。在 Rust 实现中，我们<strong>最终</strong>决定采用类似的实现方式来实现 List 。为了完成这部分的工作，首先需要定义与它相关的数据结构。</p>
+<p>在 FreeRTOS 中，List 的数据结构主要包括两个部分：<code>List</code>和<code>ListItem</code>。它们的定义如下：</p>
+<ul>
+<li><p>C 语言版本：</p>
+<ul>
+<li><p>List</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">xLIST</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	configLIST_VOLATILE UBaseType_t uxNumberOfItems;</span><br><span class="line">	ListItem_t * configLIST_VOLATILE pxIndex;		</span><br><span class="line">	MiniListItem_t xListEnd;					</span><br><span class="line">&#125; List_t;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>ListItem</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">xLIST_ITEM</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	configLIST_VOLATILE TickType_t xItemValue;			</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">xLIST_ITEM</span> * <span class="title">configLIST_VOLATILE</span> <span class="title">pxNext</span>;</span>		</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">xLIST_ITEM</span> * <span class="title">configLIST_VOLATILE</span> <span class="title">pxPrevious</span>;</span>	</span><br><span class="line">	<span class="keyword">void</span> * pvOwner;										</span><br><span class="line">	<span class="keyword">void</span> * configLIST_VOLATILE pvContainer;				</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">xLIST_ITEM</span> <span class="title">ListItem_t</span>;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>Rust 语言版本：</p>
+<ul>
+<li><p>List</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">List</span></span> &#123;</span><br><span class="line">    number_of_items: UBaseType,</span><br><span class="line">    index: WeakItemLink,</span><br><span class="line">    list_end: ItemLink,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>ListItem</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">ListItem</span></span> &#123;</span><br><span class="line">    item_value: TickType,</span><br><span class="line">    next: WeakItemLink,</span><br><span class="line">    prev: WeakItemLink,</span><br><span class="line">    owner: Weak&lt;RwLock&lt;TCB&gt;&gt;,</span><br><span class="line">    container: Weak&lt;RwLock&lt;List&gt;&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// 相关数据类型别名定义</span></span><br><span class="line">&gt; <span class="keyword">pub</span> <span class="class"><span class="keyword">type</span> <span class="title">ItemLink</span></span> = Arc&lt;RwLock&lt;ListItem&gt;&gt;;</span><br><span class="line">&gt; <span class="keyword">pub</span> <span class="class"><span class="keyword">type</span> <span class="title">WeakItemLink</span></span> = Weak&lt;RwLock&lt;ListItem&gt;&gt;;</span><br><span class="line">&gt; <span class="keyword">pub</span> <span class="class"><span class="keyword">type</span> <span class="title">WeakListLink</span></span> = Weak&lt;RwLock&lt;List&gt;&gt;;</span><br><span class="line">&gt; <span class="keyword">pub</span> <span class="class"><span class="keyword">type</span> <span class="title">ListLink</span></span> = Arc&lt;RwLock&lt;List&gt;&gt;;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h4 id="实现难题"><a href="#实现难题" class="headerlink" title="实现难题"></a>实现难题</h4><p>由于 Rust 语言中存在特殊的 <a href="https://doc.rust-lang.org/nomicon/ownership.html" target="_blank" rel="noopener">Ownership</a> ，这给我们实现 List 带来了问题。List 由 ListItem 组成，每个 ListItem 可能会在多个地方被使用而使得 ListItem 的生命周期提前被结束，这并不是我们想要看到的。所以我们需要将相关的数据进行特殊处理。还好，在 Rust 语言中为我们提供了这样的一个结构：<code>Arc</code>。它能够统计程序的不同地方对某个变量的引用，并且进行计数。只要存在这样的引用，程序就不会自动释放这个变量，从而确保了变量的有效性。</p>
+<p>通过 Arc 将数据包裹起来，就解决了变量被提前释放的问题。但是，通过 Arc 的方式来建立 List ，这样最终会形成一个环路，想象这样的一个场景，一个 List 中只有两个 ListItem。它们的结构如下：</p>
+<p><img src="concluding.assets/1562379639791.png" alt="1562379639791"></p>
+<p>可以发现，在列表项 A 中，<code>next</code> 和<code>prev</code>都指向了列表项 B 。列表项 B 也同样如此。这就形成了一个引用的闭路。在程序自动回收变量 A 时，由于还存在 B 对它的引用，所以我们必须等到 B 被回收后才能回收 A 。但是同样地，B 的回收也依赖于 A 的回收。这样两个变量就永远不会被回收了，造成了空间上的浪费。看来需要找到一种不存在闭路的引用的实现方式才行。</p>
+<p>我们注意到 Rust 语言中存在这样一个数据结构：<code>vec</code>。vec 是一个连续，可以增长的数组类型。假设我们将每个 List 定义成一个数组，这样的话 ListItem 就不需要独特的 <code>prev</code>和 <code>next</code>了，这样的话既节约了空间，又同时消除了引用的闭路，一举两得。</p>
+<p><img src="concluding.assets/1562381307690.png" alt="1562381307690"></p>
+<p>每个 ListItem在数组中的位置可以通过内置的 API 获取，它们的前面和后面的列表项都可以通过它们的本身的 索引值 获取。List 的首元素放在数组的第 0 号位置，其他列表项接着往后存储即可。</p>
+<p>这似乎是一种好的解决方案。但是由于 C 语言版本的 List 实现方式是链表，在此采用数组实现，可能会对其他的模块产生相关的影响，影响其他的模块的实现。同时采用 List 也有相关的问题，比如列表项中的对<code>container</code>的表示方法可能会需要系统提前声明几个全局的 List ，造成资源的一定程度上的浪费。</p>
+<p>看来需要实现的最终方式还是需要链表实现。查询 API 文档，我们发现了与 <code>Arc</code>对应的一个结构：<code>Weak</code>。它的作用和 Arc 差不多，但是唯一不同的是 <a href="https://doc.rust-lang.org/std/sync/struct.Weak.html" target="_blank" rel="noopener">Weak</a> 包裹的变量是不增加引用数的，也就是说，如果采用了 Weak 实现的List，就不存在引用闭路，就消除了这种影响。同时，利用 Rust 语言提供的<code>upgrade</code>和<code>downgrade</code>函数，可以实现 Weak 和 Arc 之间的转换，合理增删变量的引用数。通过这种方式，我们得到最终的数据结构（见<strong>数据结构</strong>部分的 Rust 实现）。</p>
+<h4 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h4><p>由于最终采用的是类似链表的实现方式，我们基本上可以根据 C 语言的实现细节来实现 Rust 版本的函数。下面提供一个例子来说明：</p>
+<p>list.c：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// list.c</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vListInsertEnd</span><span class="params">( List_t * <span class="keyword">const</span> pxList, ListItem_t * <span class="keyword">const</span> pxNewListItem )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ListItem_t * <span class="keyword">const</span> pxIndex = pxList-&gt;pxIndex;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Insert a new list item into pxList, but rather than sort the list,</span></span><br><span class="line"><span class="comment">	makes the new list item the last item to be removed by a call to</span></span><br><span class="line"><span class="comment">	listGET_OWNER_OF_NEXT_ENTRY(). */</span></span><br><span class="line">	pxNewListItem-&gt;pxNext = pxIndex;</span><br><span class="line">	pxNewListItem-&gt;pxPrevious = pxIndex-&gt;pxPrevious;</span><br><span class="line">	pxIndex-&gt;pxPrevious-&gt;pxNext = pxNewListItem;</span><br><span class="line">	pxIndex-&gt;pxPrevious = pxNewListItem;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Remember which list the item is in. */</span></span><br><span class="line">	pxNewListItem-&gt;pvContainer = ( <span class="keyword">void</span> * ) pxList;</span><br><span class="line"></span><br><span class="line">	( pxList-&gt;uxNumberOfItems )++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>list.rs：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// list.rs</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">insert_end</span></span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, item_link: WeakItemLink) &#123;</span><br><span class="line">    <span class="keyword">let</span> prev = get_list_item_prev(&amp;<span class="keyword">self</span>.index);</span><br><span class="line">    <span class="keyword">let</span> next = Weak::clone(&amp;<span class="keyword">self</span>.index);</span><br><span class="line">    set_list_item_next(&amp;item_link, Weak::clone(&amp;next));</span><br><span class="line">    set_list_item_prev(&amp;item_link, Weak::clone(&amp;prev));</span><br><span class="line">    set_list_item_next(&amp;prev, Weak::clone(&amp;item_link));</span><br><span class="line">    set_list_item_prev(&amp;next, Weak::clone(&amp;item_link));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">self</span>.number_of_items += <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是 <code>insert_end</code>的实现方式，首先找到被插入位置的前后两个元素，然后通过相关的操作实现新的列表项的插入，最后再增加 List 的<code>number_of_items</code>。实现方式与 C 语言版本基本上差不多。</p>
+<h3 id="TCB和TaskHandle结构体"><a href="#TCB和TaskHandle结构体" class="headerlink" title="TCB和TaskHandle结构体"></a>TCB和TaskHandle结构体</h3><p>TCB，即任务控制块，是任务调度的基本单元，TaskHandle是任务句柄，用户通过其实现对任务的各种操作，因为TCB和TaskHandle涉及大量指针操作，所以在这一部分我们花费了大量时间，对原有的结构做出了很多修改。</p>
+<h4 id="利用Callback机制调用任务函数"><a href="#利用Callback机制调用任务函数" class="headerlink" title="利用Callback机制调用任务函数"></a>利用Callback机制调用任务函数</h4><p>在FreeRTOS原本的实现中，任务初始化堆栈时只需传入指向任务函数的指针即可，但这种方式在Rust中并不可行。在Rust中，一般传递函数的方式是类似如下创建线程的写法：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::thread;</span><br><span class="line"></span><br><span class="line">thread::spawn(<span class="keyword">move</span> || &#123;</span><br><span class="line">    <span class="comment">// some work here</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这样的的写法固然可行，但因为堆栈初始化是在port中完成的，我们的任务函数必须被传入C代码中，且任务函数必须符合以下声明。那么，如何将Rust中的<code>closure</code>传入C代码中呢？</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*TaskFunction_t)</span><span class="params">( <span class="keyword">void</span> * )</span></span>;</span><br></pre></td></tr></table></figure>
+<p>我们参考<a href="https://stackoverflow.com/questions/32270030/how-do-i-convert-a-rust-closure-to-a-c-style-callback" target="_blank" rel="noopener">这篇回答</a>，每次初始化时，都传入一个符合以上定义的wrapper函数，将我们要调用的函数作为它的参数，做如下处理：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `func` is the function we want to run.</span></span><br><span class="line"><span class="keyword">let</span> f = <span class="built_in">Box</span>::new(<span class="built_in">Box</span>::new(func) <span class="keyword">as</span> <span class="built_in">Box</span>&lt;FnBox()&gt;); <span class="comment">// Pass task function as a parameter.</span></span><br><span class="line"><span class="keyword">let</span> param_ptr = &amp;*f <span class="keyword">as</span> *<span class="keyword">const</span> _ <span class="keyword">as</span> *<span class="keyword">mut</span> _; <span class="comment">// Convert to raw pointer.</span></span><br><span class="line"><span class="keyword">let</span> result = port::port_initialise_stack(top_of_stack <span class="keyword">as</span> *<span class="keyword">mut</span> _, <span class="literal">Some</span>(run_wrapper), param_ptr);</span><br></pre></td></tr></table></figure>
+<p>这样，C语言代码中实际调用的函数是：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Task call wrapper function. */</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function"><span class="keyword">fn</span> <span class="title">run_wrapper</span></span>(func_to_run: CVoidPointer) &#123;</span><br><span class="line">    <span class="keyword">unsafe</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> func_to_run = <span class="built_in">Box</span>::from_raw(func_to_run <span class="keyword">as</span> *<span class="keyword">mut</span> <span class="built_in">Box</span>&lt;FnBox() + <span class="symbol">'static</span>&gt;);</span><br><span class="line">        func_to_run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过解引用它的参数，我们获得了真正要运行的closure。此外，还必须要在任务堆栈初始化成功后手动<code>forget</code>即将被运行的函数，以免Rust的内存管理机制在初始化函数执行结束后将其free掉：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">match</span> result &#123;</span><br><span class="line">    <span class="literal">Ok</span>(_) =&gt; &#123;</span><br><span class="line">         <span class="comment">/* We MUST forget `f`, otherwise it will be freed at the end of this function.</span></span><br><span class="line"><span class="comment">          * But we need to call `f` later in `run_wrapper`, which will lead to</span></span><br><span class="line"><span class="comment">          * some unexpected behavior.</span></span><br><span class="line"><span class="comment">          */</span></span><br><span class="line">         mem::forget(f);</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="literal">Err</span>(e) =&gt; <span class="keyword">return</span> <span class="literal">Err</span>(e),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="TaskHandle类型"><a href="#TaskHandle类型" class="headerlink" title="TaskHandle类型"></a>TaskHandle类型</h4><p>在原本的C代码中，TaskHandle是一个指针（实际上是一个指向TCB的指针）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> * TaskHandle_t;</span><br></pre></td></tr></table></figure>
+<p>事实上，FreeRTOS利用<code>void *</code>实现了类似多态的类型转换，这显然是不安全的，所以Rust不允许这样的类型转换。因为可能会有多个<code>TaskHandle</code>同时指向并有权修改同一个TCB，我们采用智能指针对其进行封装：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[derive(Clone)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">TaskHandle</span></span>(Arc&lt;RwLock&lt;TCB&gt;&gt;);</span><br></pre></td></tr></table></figure>
+<p>这一定义与链表中的<code>owner</code>域定义类似，所有与任务相关的函数，都是以TaskHandle为参数的，这使得Task的使用很灵活。</p>
+<h4 id="DRY-Don’t-repeat-yourself"><a href="#DRY-Don’t-repeat-yourself" class="headerlink" title="DRY (Don’t repeat yourself)"></a>DRY (Don’t repeat yourself)</h4><p>由上一部分可以看出，TaskHandle、List、ListItem的定义都采用了多层智能指针封装，他们的定义比较复杂。事实上，由于涉及到多次对智能指针的操作，他们的使用也非常复杂。例如，下面是一个判断两个TaskHandle是否指向同一TCB的函数。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">impl</span> <span class="built_in">PartialEq</span> <span class="keyword">for</span> TaskHandle &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">eq</span></span>(&amp;<span class="keyword">self</span>, other: &amp;<span class="keyword">Self</span>) -&gt; <span class="built_in">bool</span> &#123;</span><br><span class="line">        *<span class="keyword">self</span>.<span class="number">0</span>.read().unwrap() == *other.<span class="number">0</span>.read().unwrap()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可见，智能指针的操作会让代码变得冗长、可读性降低，若涉及多个智能指针操作，则可读性更差，而且这些操作大多是重复的。与此类似的，还有获取当前执行的任务等，</p>
+<h3 id="任务控制函数"><a href="#任务控制函数" class="headerlink" title="任务控制函数"></a>任务控制函数</h3><h4 id="任务创建"><a href="#任务创建" class="headerlink" title="任务创建"></a>任务创建</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">initialise</span></span>&lt;F&gt;(<span class="keyword">mut</span> <span class="keyword">self</span>, func: F) -&gt; <span class="built_in">Result</span>&lt;TaskHandle, FreeRtosError&gt;</span><br><span class="line">    <span class="keyword">where</span></span><br><span class="line">        F: <span class="built_in">FnOnce</span>() -&gt; () + <span class="built_in">Send</span> + <span class="symbol">'static</span>,</span><br></pre></td></tr></table></figure>
+<p>我们将任务创建和任务信息初始化的函数合一处理。</p>
+<p>首先为任务申请空间，栈空间我们采用字对齐处理，实现如下。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> px_stack = port::port_malloc(stacksize_as_bytes)?;</span><br></pre></td></tr></table></figure>
+<p>之后标记栈空间信息。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> top_of_stack = <span class="keyword">self</span>.stack_pos + <span class="keyword">self</span>.task_stacksize <span class="keyword">as</span> StackType - <span class="number">1</span>;</span><br><span class="line">top_of_stack = top_of_stack &amp; portBYTE_ALIGNMENT_MASK <span class="keyword">as</span> StackType;</span><br></pre></td></tr></table></figure>
+<p>申请空间如果失败，则会返回<code>Err</code>信息，我们不作处理；如果申请成功，我们则会装入TCB的相关信息和数据。例如：任务名称，任务函数信息，任务函数参数信息，任务优先级等等……</p>
+<p>除了这些信息，还有两个任务相关的列表项要被初始化，<code>state_list_item</code>以及<code>event_list_item</code>用于任务队列调度。</p>
+<p>最后我们将初始化完成的任务放置在就绪队列<code>ready_list</code>中。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">handle.add_new_task_to_ready_list()?;</span><br></pre></td></tr></table></figure>
+<p>就此，任务穿件过程完毕。</p>
+<p>详见<code>task_control L182-L279</code></p>
+<h4 id="添加任务至就绪列表"><a href="#添加任务至就绪列表" class="headerlink" title="添加任务至就绪列表"></a>添加任务至就绪列表</h4><p>之前再创建任务的时候也有使用过，我们创建的任务需要加入就绪列表中。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">add_new_task_to_ready_list</span></span>(&amp;<span class="keyword">self</span>) -&gt; <span class="built_in">Result</span>&lt;(), FreeRtosError&gt;</span><br></pre></td></tr></table></figure>
+<p>在这个过程中，为了保证正确性，我们先进入临界区，使用我们已经编写好的<code>taskENTER_CRITICAL!()</code>和<code>taskEXIT_CRITICAL!()</code>API。</p>
+<p>我们添加新任务同时，我们将一些辅助维护的全局变量也加以维护。</p>
+<p>例如：<code>current_number_of_tasks</code></p>
+<p>之后调用<code>list API</code>完成添加。</p>
+<p>详见<code>task_control L527-L571</code>。</p>
+<h4 id="任务删除"><a href="#任务删除" class="headerlink" title="任务删除"></a>任务删除</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">task_delete</span></span>(task_to_delete: <span class="built_in">Option</span>&lt;TaskHandle&gt;)</span><br></pre></td></tr></table></figure>
+<p>首先先使用<code>get_handle_from_option</code>转换数据类型，方便之后处理。</p>
+<p>与之前添加任务一样，删除任务时，我们也需要进入临界区进行操作。</p>
+<p>进入临界区之后步骤如下：</p>
+<ol>
+<li><p>将任务从就序列表中删除，如果成功删除，则重置优先级</p>
+</li>
+<li><p>判断任务是否在等待事件，如果是，则删除任务对应的<code>event_list_item</code></p>
+</li>
+<li><p>如果删除的任务是正在运行的任务，则需要多执行一次任务切换过程</p>
+</li>
+</ol>
+<p>由于删除任务我们需要删除任务控制块以及任务堆栈所占用的空间，但是任务正在运行的话，显然任务控制块和任务堆栈不能直接释放，我们需要设置标记，将任务移动到<code>task_waiting_termination</code>列表。之后在一一释放内存。</p>
+<p>详见<code>task_control L815-L889</code>。</p>
+<h4 id="任务挂起"><a href="#任务挂起" class="headerlink" title="任务挂起"></a>任务挂起</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">suspend_task</span></span>(task_to_suspend: TaskHandle)</span><br></pre></td></tr></table></figure>
+<p>同样，先转换变量类型，再进入临界区。</p>
+<p>步骤如下：</p>
+<ol>
+<li>将任务从就序列表或者延迟列表中移除</li>
+<li>判断任务是否在等待事件，如果是，则删除任务对应的<code>event_list_item</code></li>
+</ol>
+<p>至此可以离开临界区，因为之后添加任务至挂起列表操作是不需要再临界取中执行的。</p>
+<p>接着，我们计算还要多长时间执行下一个任务，也就是任务的解锁时间，防止有任务参考了刚才被挂起的任务，我们使用<code>reset_next_task_unblock_time()</code>函数进行处理。</p>
+<p>还存在一个特例——需要挂起的任务是正在执行的任务。如果这种情况发生，我们需要特殊处理，再任务调度器没有异常的情况下，我们调用函数<code>portYIELD_WITHIN_API!()</code>进行强制切换。切换完之后还不算结束，因为我们的全局变量<code>current_tcb</code>指向我们正在执行的任务，当他被挂起之后，我们需要再找一个其他的任务放在里面。</p>
+<p>假如没有其他被挂起的任务，我们调用<code>task_switch_context()</code>获取下一个要执行的任务。</p>
+<p>详见<code>task_control L913-L975</code>。</p>
+<h4 id="任务恢复"><a href="#任务恢复" class="headerlink" title="任务恢复"></a>任务恢复</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">resume_task</span></span>(task_to_resume: TaskHandle)</span><br></pre></td></tr></table></figure>
+<p>首先我们有两种情况比较特殊，不能恢复：</p>
+<ol>
+<li>要我们恢复的任务为NULL</li>
+<li>要恢复的就是当前正在执行的任务</li>
+</ol>
+<p>如果不是这两中情况，则可以进入临界区进行操作：</p>
+<ol>
+<li>先判定任务是否已经被挂起，调用函数<code>task_is_tasksuspended()</code></li>
+<li>将要恢复的任务从挂起列表中移除</li>
+<li>将要恢复的任务放进就序列表中</li>
+<li>如果要恢复的任务优先级高于当前正在执行的任务，调用<code>taskYIELD_IF_USING_PREEMPTION!()</code>进行任务切换</li>
+</ol>
+<p>详见<code>task_control L1031-L1065</code>。</p>
+<h4 id="任务挂起判定"><a href="#任务挂起判定" class="headerlink" title="任务挂起判定"></a>任务挂起判定</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">task_is_tasksuspended</span></span>(xtask: &amp;TaskHandle) -&gt; <span class="built_in">bool</span></span><br></pre></td></tr></table></figure>
+<p>简单地说，是利用<code>list API</code>对于挂起列表进行查询。</p>
+<p>详见<code>task_control L977-L1006</code>。</p>
+<h4 id="任务延迟函数"><a href="#任务延迟函数" class="headerlink" title="任务延迟函数"></a>任务延迟函数</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">task_delay</span></span>(ticks_to_delay: TickType)</span><br></pre></td></tr></table></figure>
+<p>参数为我们需要延迟的节拍数，延迟节拍数小于0时，相当于直接执行了<code>port_YIELD</code>进行任务切换。</p>
+<p>如果延迟节拍数大于0，我们先挂起任务调度器，利用函数<code>add_current_task_to_delayed_list()</code>将我们要延迟的任务移动到<code>delay_list</code>中，之后再恢复任务调度器。如果此时任务调度器没有调度任务，我们手动调用<code>portYIELD_WITHIN_API!()</code>进行调度。</p>
+<p>详见<code>task_timemanager L55-L77</code>。</p>
+<h4 id="将任务添加至延迟队列中"><a href="#将任务添加至延迟队列中" class="headerlink" title="将任务添加至延迟队列中"></a>将任务添加至延迟队列中</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">add_current_task_to_delayed_list</span></span>(ticks_to_wait: TickType, can_block_indefinitely: <span class="built_in">bool</span>)</span><br></pre></td></tr></table></figure>
+<p>详见<code>task_control L650-L750</code>。</p>
+<h3 id="任务API函数"><a href="#任务API函数" class="headerlink" title="任务API函数"></a>任务API函数</h3><h4 id="Task-API模块用途"><a href="#Task-API模块用途" class="headerlink" title="Task_API模块用途"></a>Task_API模块用途</h4><ul>
+<li><p>该模块中主要实现几个任务相关的API函数，它们的作用主要是便于用户在执行过程中与操作系统进行交互，其中包括获取当前任务的状态信息（主要是基于taskTCB），并能够赋予使用者以一定的接口来改变任务属性（），其中尤其重要的是task_priority_set()函数，它使用户能够手动更新任务的优先级，从而按照用户预期的方式进行任务调度。</p>
+</li>
+<li><p>我们综合考虑到函数的重要性和使用频率，利用Rust实现了API的其中一部分常用函数。</p>
+</li>
+</ul>
+<h4 id="Rust实现"><a href="#Rust实现" class="headerlink" title="Rust实现"></a>Rust实现</h4><ul>
+<li><p><strong>实现函数</strong><br><strong>pub fn task_priority_get(xTask: Option<taskhandle>) -&gt; UBaseType</taskhandle></strong><br><strong>pub fn task_priority_set(xTask: Option<taskhandle>, uxNewPriority: UBaseType)</taskhandle></strong><br>pub fn task_get_handle(pcNameToQuery:&amp;char) -&gt; &amp;TaskHandle<br>pub fn task_get_system_state(pxTaskStatusArray:&amp;TaskStatus , uxArraySize:UBaseType , pulTotalRunTime:u32) -&gt; UBaseType<br>pub fn task_test_info(xTask:Option&lt;&amp;TaskHandle&gt;, pxTaskStatus:&amp;TaskStatus, xGetFreeStackSpace:BaseType, eState:TaskState)<br>pub fn task_get_application_task_tag(xTask:TaskHandle) -&gt; UBaseType<br>pub fn task_get_idle_task_handle() -&gt; &amp;TaskHandle<br>pub fn task_get_stack_high_water_mark(xtask:Option&lt;&amp;TaskHandle&gt;) -&gt; UBaseType   </p>
+</li>
+<li><p><strong>技术点</strong><br>在Rust改写过程中，一个比较麻烦的问题是如何实现原函数中TaskHandle的访问。由于Rust对变量的所有权和生命期规定非常严格，因而使用以全局变量为参数的函数的方式会导致混乱。因此我们决定采用灵活的宏定义方式来实现，免除了参数生命期结束的困扰。<br>如下面的获取任务tcb函数：</p>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">macro_rules!</span> get_tcb_from_handle_inAPI &#123;</span><br><span class="line">    ($task:expr) =&gt; &#123;</span><br><span class="line">        <span class="keyword">match</span> $task &#123;</span><br><span class="line">            <span class="literal">Some</span>(t) =&gt; t,</span><br><span class="line">            <span class="literal">None</span> =&gt; get_current_task_handle!(),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Queue-队列"><a href="#Queue-队列" class="headerlink" title="Queue 队列"></a>Queue 队列</h3><p>在没有操作系统的时候，两个应用程序进行消息传递一般是使用全局变量的方式；但是如果在使用操作系统的应用中用全局变量来传递消息，则会涉及资源管理的问题。FreeRTOS对此提供了一个叫”队列”的机制来完成任务与任务、任务与中断之间的消息传递。</p>
+<h4 id="数据结构-1"><a href="#数据结构-1" class="headerlink" title="数据结构"></a>数据结构</h4><p>在Rust中，我们使用和C语言中类似的数据结构，但为了让Queue可以在不同线程中共享，我们为其实现interior mutability。</p>
+<ul>
+<li><p>C语言版本：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">QueueDefinition</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int8_t</span> *pcHead;					</span><br><span class="line">	<span class="keyword">int8_t</span> *pcTail;					</span><br><span class="line">	<span class="keyword">int8_t</span> *pcWriteTo;				</span><br><span class="line"></span><br><span class="line">	<span class="keyword">union</span>							</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int8_t</span> *pcReadFrom;			</span><br><span class="line">		UBaseType_t uxRecursiveCallCount;</span><br><span class="line">	&#125; u;</span><br><span class="line"></span><br><span class="line">	List_t xTasksWaitingToSend;		</span><br><span class="line">	List_t xTasksWaitingToReceive;	</span><br><span class="line"></span><br><span class="line">	<span class="keyword">volatile</span> UBaseType_t uxMessagesWaiting;</span><br><span class="line">	UBaseType_t uxLength;			</span><br><span class="line">	UBaseType_t uxItemSize;			</span><br><span class="line"></span><br><span class="line">	<span class="keyword">volatile</span> <span class="keyword">int8_t</span> cRxLock;		</span><br><span class="line">	<span class="keyword">volatile</span> <span class="keyword">int8_t</span> cTxLock;		</span><br><span class="line"></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">if</span>( ( configSUPPORT_STATIC_ALLOCATION == 1 ) &amp;&amp; ( configSUPPORT_DYNAMIC_ALLOCATION == 1 ) )</span></span><br><span class="line">		<span class="keyword">uint8_t</span> ucStaticallyAllocated;	</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">if</span> ( configUSE_QUEUE_SETS == 1 )</span></span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">QueueDefinition</span> *<span class="title">pxQueueSetContainer</span>;</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">if</span> ( configUSE_TRACE_FACILITY == 1 )</span></span><br><span class="line">		UBaseType_t uxQueueNumber;</span><br><span class="line">		<span class="keyword">uint8_t</span> ucQueueType;</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">&#125; xQUEUE;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> xQUEUE Queue_t;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Rust语言版本：</p>
+<ul>
+<li><p>QueueDefinition</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[derive(Default)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">QueueDefinition</span></span>&lt;T&gt;</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">    T: <span class="built_in">Default</span> + <span class="built_in">Clone</span>,</span><br><span class="line">&#123;</span><br><span class="line">    pcQueue: VecDeque&lt;T&gt;,</span><br><span class="line"></span><br><span class="line">    pcHead: UBaseType,</span><br><span class="line">    pcTail: UBaseType,</span><br><span class="line">    pcWriteTo: UBaseType,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*pcReadFrom &amp; uxRecuriveCallCount*/</span></span><br><span class="line">    QueueUnion: UBaseType,</span><br><span class="line"></span><br><span class="line">    xTasksWaitingToSend: ListLink,</span><br><span class="line">    xTasksWaitingToReceive: ListLink,</span><br><span class="line"></span><br><span class="line">    uxMessagesWaiting: UBaseType,</span><br><span class="line">    uxLength: UBaseType,</span><br><span class="line">    cRxLock: <span class="built_in">i8</span>,</span><br><span class="line">    cTxLock: <span class="built_in">i8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="meta">#[cfg(all(</span></span><br><span class="line"><span class="meta">        feature = <span class="meta-string">"configSUPPORT_STATIC_ALLOCATION"</span>,</span></span><br><span class="line"><span class="meta">        feature = <span class="meta-string">"configSUPPORT_DYNAMIC_ALLOCATION"</span></span></span><br><span class="line"><span class="meta">    ))]</span></span><br><span class="line">    ucStaticallyAllocated: <span class="built_in">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="meta">#[cfg(feature = <span class="meta-string">"configUSE_QUEUE_SETS"</span>)]</span></span><br><span class="line">    pxQueueSetContainer: <span class="built_in">Option</span>&lt;<span class="built_in">Box</span>&lt;QueueDefinition&gt;&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="meta">#[cfg(feature = <span class="meta-string">"configUSE_TRACE_FACILITY"</span>)]</span></span><br><span class="line">    uxQueueNumber: UBaseType,</span><br><span class="line">    <span class="comment">//#[cfg(feature = "configUSE_TRACE_FACILITY")]</span></span><br><span class="line">    ucQueueType: QueueType,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所作修改：</p>
+<p>在Rust中，我们使用<code>VecDeque</code>类型存储队列内容，<code>pcHead</code>、<code>pcTail</code>、<code>pcWriteTo</code>依然指向相应位置，但其类型为<code>UBaseType</code>。</p>
+<p>Rust语言中，用作队列时的<code>pcReadFrom</code>和用作递归互斥量时的<code>uxRecursiveCallCount</code>均为<code>UBaseType</code>类型，因此无需使用union，将其合并成一个变量<code>QueueUnion</code>，在不同情况下使用即可。</p>
+<p>在Rust中将消息类型设为泛型T，无需手动设定<code>uxItemSize</code>    ，只需传入消息类型即可。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Queue</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Queue</span></span>&lt;T&gt;(UnsafeCell&lt;QueueDefinition&lt;T&gt;&gt;)</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">    T: <span class="built_in">Default</span> + <span class="built_in">Clone</span>;</span><br><span class="line"><span class="keyword">unsafe</span> <span class="keyword">impl</span>&lt;T: <span class="built_in">Default</span> + <span class="built_in">Clone</span>&gt; <span class="built_in">Send</span> <span class="keyword">for</span> QueueIM&lt;T&gt; &#123;&#125;</span><br><span class="line"><span class="keyword">unsafe</span> <span class="keyword">impl</span>&lt;T: <span class="built_in">Default</span> + <span class="built_in">Clone</span>&gt; <span class="built_in">Sync</span> <span class="keyword">for</span> QueueIM&lt;T&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>由于我们不能让两个任务共享对Queue的mut引用，这显然是违背Rust的所有权的。然而<code>send</code>和<code>receive</code>方法都需要对Queue进行mut引用。</p>
+<p>为了避免这个问题，我们需要把这些方法改为immutable引用，并为队列实现interior mutability。实现<code>send</code>和<code>sync</code>是为了让Queue可以在不同线程中共享。</p>
+<p>例如为Queue实现interior mutability的<code>send</code>方法：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">send</span></span>(&amp;<span class="keyword">self</span>, pvItemToQueue: T, xTicksToWait: TickType) -&gt; <span class="built_in">Result</span>&lt;(),QueueError&gt; &#123;</span><br><span class="line">	<span class="keyword">unsafe</span> &#123;</span><br><span class="line">		<span class="keyword">let</span> inner = <span class="keyword">self</span>.<span class="number">0</span>.get();</span><br><span class="line">		(*inner).queue_generic_send(pvItemToQueue, xTicksToWait, queueSEND_TO_BACK)</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>尽管这里使用了许多<code>unsafe</code>代码，但因为我们的QueueDefinition中的<code>receive</code>和<code>send</code>方法内实现了同步阻塞机制，所以不会造成数据竞争，我们的代码还是安全的。通过interior mutability的方式，就可以让Queue作为一个immutable的引用在不用线程间愉快地共享了。</p>
+</li>
+</ul>
+<h4 id="实现方式-1"><a href="#实现方式-1" class="headerlink" title="实现方式"></a>实现方式</h4><p>用作队列时，大部分实现逻辑都与C语言中逻辑相同。</p>
+<p>在C语言实现中，<code>queue.h</code>多为宏，实为调用<code>queue.c</code>中的函数。在Rust语言实现中，为<code>QueueDefinition</code>实现的方法为<code>queue.c</code>中的函数，如<code>xQueueGenericSend()</code>实现为<code>QueueDefinition</code>的方法</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">queue_generic_send</span></span>(</span><br><span class="line">  &amp;<span class="keyword">mut</span> <span class="keyword">self</span>,</span><br><span class="line">  pvItemToQueue:T,</span><br><span class="line">  xTicksToWait:TickType,</span><br><span class="line">  xCopyPosition:BaseType</span><br><span class="line">) -&gt; <span class="built_in">Result</span>&lt;(),QueueError&gt;</span><br></pre></td></tr></table></figure>
+<p>，为<code>Queue</code>实现的方法为<code>queue.h</code>中的宏，如<code>xQueueSend()</code>实现为<code>Queue</code>的方法</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">send</span></span>(&amp;<span class="keyword">self</span>, pvItemToQueue:T,xTicksToWait:TickType) -&gt; <span class="built_in">Result</span>&lt;(),QueueError&gt;</span><br></pre></td></tr></table></figure>
+<p>在Rust中返回值与C语言中有所不同，例如<code>receive</code>方法中使用<code>Result&lt;T,QueueError&gt;</code>类型作为返回值，若成功从Queue中接收到一个消息，则通过<code>Ok(T)</code>返回，若失败则返回相应的<code>Err(QueueError)</code>。</p>
+<h3 id="Semaphore-信号量"><a href="#Semaphore-信号量" class="headerlink" title="Semaphore 信号量"></a>Semaphore 信号量</h3><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>TODO：现在task和queue的基本功能已经测试过，主要还需测试以下内容：</p>
+<ul>
+<li>任务挂起恢复</li>
+<li>任务API里改变任务优先级的那个函数</li>
+<li>semaphore和mutex</li>
+</ul>
+<p>负责这几部分的同学这两天可以写一些测试代码测试一下，就像<code>src/lib.rs</code>里的测试一样，具体测试可以模仿<a href="https://github.com/hashmismatch/freertos.rs/tree/master/qemu_stm32_tests/examples" target="_blank" rel="noopener">freertos.rs</a>里的。</p>
+<p>如果这几部分测试都比较顺利，我们回头用一些benchmark测一下性能，与C语言的实现对比一下。</p>
+<h2 id="总结与不足"><a href="#总结与不足" class="headerlink" title="总结与不足"></a>总结与不足</h2><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>在没有Rust经验也缺乏操作系统知识的情况下，我们最终用250多次commit完成了6000多行代码，几乎实现了FreeRTOS的所有功能，在我们自己看来，Rust-FreeRTOS项目是很成功的。我们认为成功的原因主要是：</p>
+<ol>
+<li>我们整个项目进展比较早。我们确立选题、Rust学习、开始编码都比较早，同时我们每周二、周日碰面两次，这使我们整个项目推进较快。</li>
+<li>我们结合对FreeRTOS的模块化设计，进行了明确的分工，并且从未改变，每个人各得其所。</li>
+<li>我们的设计是自底向上的，下层的基础模块为上层提供了良好的封装，使得可以迅速编写出大量的上层代码。</li>
+</ol>
+<h4 id="我们的不足"><a href="#我们的不足" class="headerlink" title="我们的不足"></a>我们的不足</h4><p>不论是在设计上还是工程的实施上，我们都犯了很多错误，其中有些错误直到最终也没有进行修正：</p>
+<ol>
+<li>我们没有消灭所有的全局变量。这不是Rust鼓励的实现方式，事实上，这给我们的编程带来了很大的困难。</li>
+<li>我们使用了<code>std</code>库，但是没有自己实现它，但是一个真正的操作系统是要自己实现<code>std</code>库。</li>
+<li>一个可能的不足：我们在代码中使用了过多的智能指针（<code>Arc</code> \ <code>Weak</code> \ <code>RwLock</code>），它们基于操作系统的信号量机制，容易造成死锁（我们在调试的过程中就多次出现死锁）</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2019/07/06/hello-world/" data-id="cjxrigl890000bhbwvgw20g9s" class="article-share-link" data-share="baidu" data-title="Hello World">Share</a>
+        <a data-url="http://yoursite.com/2019/07/06/hello-world/" data-id="cjxrixv4m0000c9bw0pp3qfg0" class="article-share-link" data-share="baidu" data-title="结题报告">Share</a>
       
 
       
@@ -143,7 +367,7 @@
       <ul>
         
           <li>
-            <a href="/2019/07/06/hello-world/">Hello World</a>
+            <a href="/2019/07/06/hello-world/">结题报告</a>
           </li>
         
       </ul>
