@@ -1049,6 +1049,21 @@
 <span id="1049">1049</span>
 <span id="1050">1050</span>
 <span id="1051">1051</span>
+<span id="1052">1052</span>
+<span id="1053">1053</span>
+<span id="1054">1054</span>
+<span id="1055">1055</span>
+<span id="1056">1056</span>
+<span id="1057">1057</span>
+<span id="1058">1058</span>
+<span id="1059">1059</span>
+<span id="1060">1060</span>
+<span id="1061">1061</span>
+<span id="1062">1062</span>
+<span id="1063">1063</span>
+<span id="1064">1064</span>
+<span id="1065">1065</span>
+<span id="1066">1066</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">kernel</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">list</span>;
@@ -1149,15 +1164,57 @@
         }
     }
 
+    <span class="doccomment">/// * Descrpition:</span>
+    <span class="doccomment">/// Reset the name of a TCB.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// * Implemented by: Fan Jinhao</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments:</span>
+    <span class="doccomment">///  `name` A descriptive name for the task.  This is mainly used to</span>
+    <span class="doccomment">///  facilitate debugging.  Max length defined by configMAX_TASK_NAME_LEN - default</span>
+    <span class="doccomment">///  is 16.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Return:</span>
+    <span class="doccomment">/// Return a TCB with new name.</span>
+
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">task_name</span> <span class="op">=</span> <span class="ident">name</span>.<span class="ident">to_owned</span>().<span class="ident">to_string</span>();
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// * Descrpition:</span>
+    <span class="doccomment">/// Reset the stacksize of a TCB.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// * Implemented by: Fan Jinhao</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments:</span>
+    <span class="doccomment">///  `stacksize` The size of the task stack specified as the number of</span>
+    <span class="doccomment">///  variables the stack can hold - not the number of bytes.  For example, if</span>
+    <span class="doccomment">///  the stack is 16 bits wide and usStackDepth is defined as 100, 200 bytes</span>
+    <span class="doccomment">///  will be allocated for stack storage.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Return:</span>
+    <span class="doccomment">/// Return a TCB with new stacksize.</span>
+
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stacksize</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">stacksize</span>: <span class="ident">UBaseType</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">task_stacksize</span> <span class="op">=</span> <span class="ident">stacksize</span>;
         <span class="self">self</span>
     }
+
+    <span class="doccomment">/// * Descrpition:</span>
+    <span class="doccomment">/// Reset the name of a priority.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// * Implemented by: Fan Jinhao</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments:</span>
+    <span class="doccomment">///  `priority` The priority at which the task should run.  Systems that</span>
+    <span class="doccomment">///  include MPU support can optionally create tasks in a privileged (system)</span>
+    <span class="doccomment">///  mode by setting bit portPRIVILEGE_BIT of the priority parameter.  For</span>
+    <span class="doccomment">///  example, to create a privileged task at priority 2 the uxPriority parameter</span>
+    <span class="doccomment">///  should be set to ( 2 | portPRIVILEGE_BIT ).</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Return:</span>
+    <span class="doccomment">/// Return a TCB with new priority.</span>
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">priority</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">priority</span>: <span class="ident">UBaseType</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="kw">if</span> <span class="ident">priority</span> <span class="op">&gt;=</span> <span class="macro">configMAX_PRIORITIES</span><span class="macro">!</span>() {
@@ -1175,7 +1232,7 @@
     }
 
     <span class="doccomment">/// * Descrpition:</span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">///  Internally, within the FreeRTOS implementation, tasks use two blocks of</span>
     <span class="doccomment">///  memory.  The first block is used to hold the task&#39;s data structures.  The</span>
     <span class="doccomment">///  second block is used by the task as its stack.  If a task is created using</span>
@@ -1185,49 +1242,26 @@
     <span class="doccomment">///  xTaskCreateStatic() then the application writer must provide the required</span>
     <span class="doccomment">///  memory.  xTaskCreateStatic() therefore allows a task to be created without</span>
     <span class="doccomment">///  using any dynamic memory allocation.</span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">///  See xTaskCreateStatic() for a version that does not use any dynamic memory</span>
     <span class="doccomment">///  allocation.</span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">///  xTaskCreate() can only be used to create a task that has unrestricted</span>
     <span class="doccomment">///  access to the entire microcontroller memory map.  Systems that include MPU</span>
     <span class="doccomment">///  support can alternatively create an MPU constrained task using</span>
     <span class="doccomment">///  xTaskCreateRestricted().</span>
-    <span class="doccomment">/// </span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// * Implemented by: Fan Jinhao</span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// # Arguments:</span>
-    <span class="doccomment">///  @param pvTaskCode Pointer to the task entry function.  Tasks</span>
+    <span class="doccomment">///  `func` Pointer to the task entry function.  Tasks</span>
     <span class="doccomment">///  must be implemented to never return (i.e. continuous loop).</span>
-    <span class="doccomment">/// </span>
-    <span class="doccomment">///  @param pcName A descriptive name for the task.  This is mainly used to</span>
-    <span class="doccomment">///  facilitate debugging.  Max length defined by configMAX_TASK_NAME_LEN - default</span>
-    <span class="doccomment">///  is 16.</span>
-    <span class="doccomment">/// </span>
-    <span class="doccomment">///  @param usStackDepth The size of the task stack specified as the number of</span>
-    <span class="doccomment">///  variables the stack can hold - not the number of bytes.  For example, if</span>
-    <span class="doccomment">///  the stack is 16 bits wide and usStackDepth is defined as 100, 200 bytes</span>
-    <span class="doccomment">///  will be allocated for stack storage.</span>
-    <span class="doccomment">/// </span>
-    <span class="doccomment">///  @param pvParameters Pointer that will be used as the parameter for the task</span>
-    <span class="doccomment">///  being created.</span>
-    <span class="doccomment">/// </span>
-    <span class="doccomment">///  @param uxPriority The priority at which the task should run.  Systems that</span>
-    <span class="doccomment">///  include MPU support can optionally create tasks in a privileged (system)</span>
-    <span class="doccomment">///  mode by setting bit portPRIVILEGE_BIT of the priority parameter.  For</span>
-    <span class="doccomment">///  example, to create a privileged task at priority 2 the uxPriority parameter</span>
-    <span class="doccomment">///  should be set to ( 2 | portPRIVILEGE_BIT ).</span>
-    <span class="doccomment">/// </span>
-    <span class="doccomment">///  @param pvCreatedTask Used to pass back a handle by which the created task</span>
-    <span class="doccomment">///  can be referenced.</span>
-    <span class="doccomment">/// </span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// # Return:</span>
-    <span class="doccomment">///  @return pdPASS if the task was successfully created and added to a ready</span>
+    <span class="doccomment">///  `pdPASS` if the task was successfully created and added to a ready</span>
     <span class="doccomment">///  list, otherwise an error code defined in the file projdefs.h</span>
-    <span class="doccomment">/// </span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">initialise</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">func</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">TaskHandle</span>, <span class="ident">FreeRtosError</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">F</span>: <span class="ident">FnOnce</span>() <span class="op">-&gt;</span> () <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
@@ -1454,9 +1488,9 @@ pub fn initialize_task_list () {
 <span class="doccomment">///  be used as a parameter to vTaskDelete to delete the task.</span>
 <span class="doccomment">///  Since multiple `TaskHandle`s may refer to and own a same TCB at a time,</span>
 <span class="doccomment">///  we wrapped TCB within a `tuple struct` using `Arc&lt;RwLock&lt;_&gt;&gt;`</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// * Implemented by: Fan Jinhao</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TaskHandle</span>(<span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">TCB</span><span class="op">&gt;&gt;</span>);
 
@@ -1830,29 +1864,29 @@ pub fn initialize_task_list () {
 
 <span class="doccomment">///  INCLUDE_vTaskDelete must be defined as 1 for this function to be available.</span>
 <span class="doccomment">///  See the configuration section for more information.</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">///  Remove a task from the RTOS real time kernel&#39;s management.  The task being</span>
 <span class="doccomment">///  deleted will be removed from all ready, blocked, suspended and event lists.</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">///  NOTE:  The idle task is responsible for freeing the kernel allocated</span>
 <span class="doccomment">///  memory from tasks that have been deleted.  It is therefore important that</span>
 <span class="doccomment">///  the idle task is not starved of microcontroller processing time if your</span>
 <span class="doccomment">///  application makes any calls to vTaskDelete ().  Memory allocated by the</span>
 <span class="doccomment">///  task code is not automatically freed, and should be freed before the task</span>
 <span class="doccomment">///  is deleted.</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">///  See the demo application file death.c for sample code that utilises</span>
 <span class="doccomment">///  vTaskDelete ().</span>
-<span class="doccomment">/// </span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// * Implemented by: Huang Yeqi</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// # Arguments:</span>
 <span class="doccomment">///  `task_to_delete` The handle of the task to be deleted.  Passing NULL will</span>
 <span class="doccomment">///  cause the calling task to be deleted.</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// # Return:</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;INCLUDE_vTaskDelete&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">task_delete</span>(<span class="ident">task_to_delete</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TaskHandle</span><span class="op">&gt;</span>) {
     <span class="comment">/* If null is passed in here then it is the calling task that is
@@ -1932,23 +1966,23 @@ pub fn initialize_task_list () {
 
 <span class="doccomment">///  INCLUDE_vTaskSuspend must be defined as 1 for this function to be available.</span>
 <span class="doccomment">///  See the configuration section for more information.</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">///  Suspend any task.  When suspended a task will never get any microcontroller</span>
 <span class="doccomment">///  processing time, no matter what its priority.</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">///  Calls to vTaskSuspend are not accumulative -</span>
 <span class="doccomment">///  i.e. calling vTaskSuspend () twice on the same task still only requires one</span>
 <span class="doccomment">///  call to vTaskResume () to ready the suspended task.</span>
-<span class="doccomment">/// </span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// * Implemented by: Huang Yeqi</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// # Arguments:</span>
-<span class="doccomment">///  @param xTaskToSuspend Handle to the task being suspended.  Passing a NULL</span>
+<span class="doccomment">///  `task_to_suspend` Handle to the task being suspended.  Passing a NULL</span>
 <span class="doccomment">///  handle will cause the calling task to be suspended.</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// # Return:</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;INCLUDE_vTaskSuspend&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">suspend_task</span>(<span class="ident">task_to_suspend</span>: <span class="ident">TaskHandle</span>) {
     <span class="macro">trace</span><span class="macro">!</span>(<span class="string">&quot;suspend_task called!&quot;</span>);
@@ -2045,27 +2079,23 @@ pub fn initialize_task_list () {
     <span class="ident">xreturn</span>
 }
 
-<span class="doccomment">/// </span>
-<span class="doccomment">///  task. h</span>
-<span class="doccomment">///  &lt;pre&gt;void vTaskResume( TaskHandle_t xTaskToResume );&lt;/pre&gt;</span>
-<span class="doccomment">/// </span>
 <span class="doccomment">///  INCLUDE_vTaskSuspend must be defined as 1 for this function to be available.</span>
 <span class="doccomment">///  See the configuration section for more information.</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">///  Resumes a suspended task.</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">///  A task that has been suspended by one or more calls to vTaskSuspend ()</span>
 <span class="doccomment">///  will be made available for running again by a single call to</span>
 <span class="doccomment">///  vTaskResume ().</span>
-<span class="doccomment">/// </span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// * Implemented by: Huang Yeqi</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// # Arguments:</span>
-<span class="doccomment">///  @param xTaskToResume Handle to the task being readied.</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///  `task_to_resume` Handle to the task being readied.</span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// # Return:</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;INCLUDE_vTaskSuspend&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resume_task</span>(<span class="ident">task_to_resume</span>: <span class="ident">TaskHandle</span>) {
     <span class="macro">trace</span><span class="macro">!</span>(<span class="string">&quot;resume task called!&quot;</span>);
